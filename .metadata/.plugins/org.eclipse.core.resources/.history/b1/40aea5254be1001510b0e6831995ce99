@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="db.properties">
+		<!-- 还可以配置属性 -->
+		<!-- <property name="jdbc.driver" value="" /> -->
+	</properties>
+	<!-- 全局配置参数 -->
+	<!-- <settings> -->
+	<!-- changes from the defaults for testing -->
+	<!-- <setting name="cacheEnabled" value="false" /> -->
+	<!-- <setting name="useGeneratedKeys" value="true" /> -->
+	<!-- <setting name="defaultExecutorType" value="REUSE" /> -->
+	<!-- </settings> -->
+
+	<!-- 别名 -->
+	<typeAliases>
+		<!-- 单个别名 -->
+		<typeAlias alias="User" type="com.example.domain.User" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- Mapper代理 -->
+		<mapper resource="com/example/domain/UserMapper.xml" />
+		<!-- 不使用Mapper代理 -->
+		<!-- <mapper resource="com/example/domain/User.xml" /> -->
+	</mappers>
+</configuration> 

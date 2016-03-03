@@ -1,0 +1,7 @@
+package com.example.domain;
+
+public class UserQueryVo {
+	
+	//²éÑ¯Ìõ¼ş
+	private User user;
+}

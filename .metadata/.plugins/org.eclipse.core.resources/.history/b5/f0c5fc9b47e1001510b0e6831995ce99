@@ -1,0 +1,115 @@
+package com.example.mapperdao;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.example.domain.User;
+
+public class UserMapperTest {
+
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void afterMethod() throws IOException {
+		// 配置文件
+		String resource = "SqlMapConfig.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		// 创建会话工厂传入配置文件信息
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	}
+	
+	@Test
+	public void testFindUserById() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		try {
+			User user = userMapper.findUserById(1);
+			System.out.println(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
+	public void testFindUserByName() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		try {
+			List<User> list= userMapper.findUserByName("铭");
+			for(User user : list){
+				System.out.println(user);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Test
+	public void testInsertUser() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		try {
+			
+			User user = new User();
+			user.setUsername("琪");
+			user.setSex("女");
+			user.setBirthDay(new Date());
+			user.setAddress("白银");
+			userMapper.insertUser(user );
+			
+			System.out.println(user.getId());
+			
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testDeleteUserById() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		try {
+			userMapper.deleteUserById(13);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Test
+	public void testUpdateUser() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		User user = new User();
+		user.setId(2);
+		user.setUsername("琪");
+		user.setSex("女");
+		user.setBirthDay(new Date());
+		user.setAddress("白银");
+		try {
+			userMapper.updateUser(user);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

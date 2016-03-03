@@ -1,0 +1,29 @@
+package com.example.mapperdao;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class UserMapperTest {
+
+	@Test
+	public void testFindUserById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInsertUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDeleteUserById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateUser() {
+		fail("Not yet implemented");
+	}
+
+}

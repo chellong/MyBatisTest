@@ -1,0 +1,5 @@
+package com.example.daoimpl;
+
+public class UserDaoImpl {
+
+}

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestUser" project="MyBatis" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="com.example.testdomain.TestUser" time="0.335">
-    <testcase name="testFindUserByName" classname="com.example.testdomain.TestUser" time="0.295"/>
-    <testcase name="testInsertUser" classname="com.example.testdomain.TestUser" time="0.019"/>
-    <testcase name="testFindUserById" classname="com.example.testdomain.TestUser" time="0.021"/>
-  </testsuite>
-</testrun>
