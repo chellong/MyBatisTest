@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestUser" project="MyBatis" tests="2" started="0" failures="0" errors="1" ignored="0">
+  <testsuite name="com.example.testdomain.TestUser" incomplete="true">
+    <error>org.apache.ibatis.exceptions.PersistenceException: &#13;
+### Error building SqlSession.&#13;
+### The error may exist in com/example/domain/UserMapper.xml&#13;
+### Cause: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'om.example.domain.User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: om.example.domain.User&#13;
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:26)&#13;
+	at org.apache.ibatis.session.SqlSessionFactoryBuilder.build(SqlSessionFactoryBuilder.java:82)&#13;
+	at org.apache.ibatis.session.SqlSessionFactoryBuilder.build(SqlSessionFactoryBuilder.java:66)&#13;
+	at com.example.testdomain.TestUser.afterClass(TestUser.java:35)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:497)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)&#13;
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'om.example.domain.User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: om.example.domain.User&#13;
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:109)&#13;
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:92)&#13;
+	at org.apache.ibatis.session.SqlSessionFactoryBuilder.build(SqlSessionFactoryBuilder.java:80)&#13;
+	... 18 more&#13;
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'om.example.domain.User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: om.example.domain.User&#13;
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)&#13;
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)&#13;
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:322)&#13;
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:107)&#13;
+	... 20 more&#13;
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'om.example.domain.User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: om.example.domain.User&#13;
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:103)&#13;
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:72)&#13;
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)&#13;
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)&#13;
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)&#13;
+	... 23 more&#13;
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'om.example.domain.User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: om.example.domain.User&#13;
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:117)&#13;
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:130)&#13;
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:101)&#13;
+	... 27 more&#13;
+Caused by: java.lang.ClassNotFoundException: Cannot find class: om.example.domain.User&#13;
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:190)&#13;
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)&#13;
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:256)&#13;
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:113)&#13;
+	... 29 more&#13;
+&#13;
+</error>
+    <testcase name="testFindUserByName" classname="com.example.testdomain.TestUser" incomplete="true"/>
+    <testcase name="testFindUserById" classname="com.example.testdomain.TestUser" incomplete="true"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,28 @@
+package com.example.testdomain;
+
+import java.io.InputStream;
+
+import org.apache.ibatis.builder.SqlSourceBuilder;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.lf5.util.Resource;
+import org.junit.AfterClass;
+import org.junit.Test;
+
+public class TestUser {
+	
+	@AfterClass
+	public void afterClass(){
+		//配置文件
+		String resource = "SqlMapConfig.xml";
+		InputStream inputStream= Resources.getResourceAsStream(resource);
+		//创建会话工厂传入配置文件信息
+		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(inputStream);
+	}
+
+	@Test
+	public void testFind(){
+		
+	}
+}

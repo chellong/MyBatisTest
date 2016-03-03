@@ -1,0 +1,17 @@
+package com.example.testdomain;
+
+import org.junit.AfterClass;
+import org.junit.Test;
+
+public class TestUser {
+	
+	@AfterClass
+	public void afterClass(){
+		
+	}
+
+	@Test
+	public void testFind(){
+		
+	}
+}
