@@ -1,0 +1,25 @@
+package com.example.mapper;
+
+import java.util.List;
+
+import com.example.domain.po.OrdersCustom;
+
+/**
+ * 
+ * @author ±±·ÉµÄºòÄñ
+ */
+
+public interface OrdersMapperCustom {
+
+	/**
+	 * findOedersUserResultMap
+	 */
+	public List<OrdersCustom> findOedersUser() throws Exception;
+	
+	/**
+	 *  findOedersUserResultMap
+	 * @return
+	 * @throws Exception
+	 */
+	public List<OrdersCustom> findOedersUserResultMap() throws Exception;
+}

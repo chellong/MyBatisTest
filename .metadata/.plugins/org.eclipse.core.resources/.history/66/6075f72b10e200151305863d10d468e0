@@ -1,0 +1,23 @@
+package com.example.domain;
+
+/**
+ * 订单的扩展类
+ * @author 北飞的候鸟
+ *
+ */
+public class OrderCustom extends Orders{
+	
+	/**
+	 * 用户名 
+	 */
+	private String username;
+	/**
+	 * 用户性别
+	 */
+	private String sex;
+	/**
+	 * 用户地址
+	 */
+	private String address;
+
+}

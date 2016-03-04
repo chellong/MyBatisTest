@@ -1,0 +1,13 @@
+package com.example.domain.po;
+
+
+import org.junit.Test;
+
+public class OrdersCustomTest {
+
+	@Test
+	public void testFindOedersUser() {
+		
+	}
+
+}

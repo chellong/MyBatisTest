@@ -1,0 +1,25 @@
+1456987244940	Delete element
+1456987300910	Rename package 'com.example.resource'
+1456987980574	Delete element
+1456988515108	Delete element
+1456988535238	Rename resource 'UserMaper.xml'
+1456988620272	Rename package 'com.example.domain'
+1456988710853	Delete element
+1456992056237	Delete element
+1457010690864	Copy compilation unit
+1457010718217	Rename type 'UserDao'
+1457011105379	Copy file
+1457011624858	Rename package 'com.example.testdao'
+1457011632504	Rename package 'com.example.testdomain'
+1457011640055	Rename package 'com.example.testmapperdao'
+1457012366165	Delete element
+1457013417652	Delete element
+1457013577800	Copy file
+1457099303366	Rename package 'com.example.domain.pojo'
+1457099533387	Copy file
+1457099608694	Move compilation unit
+1457099627052	Move file
+1457099639947	Rename resource 'OrdersMapper.xml'
+1457099766233	Rename package 'com.example.mapperdao'
+1457099857312	Rename type 'OrderCustom'
+1457104088212	Rename type 'OrderDetail'

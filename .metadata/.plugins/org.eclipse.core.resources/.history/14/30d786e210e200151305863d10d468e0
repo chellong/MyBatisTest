@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper代理用XML -->
+<mapper namespace="com.example.mapperdao.UserMapper">
+
+	<sql id="query_user_where">
+		<if test="userCustom != null">
+			<if test="userCustom.sex != null and userCustom.sex != ''">
+				and user.sex = #{userCustom.sex}
+			</if>
+			<if test="userCustom.username != null and userCustom.username != ''">
+				and user.username like '%${userCustom.username}%'
+			</if>
+		</if>
+	</sql>
+	<!-- 定义resultMap -->
+	<!-- type最终的类型 -->
+	<!-- id标示 -->
+	<resultMap type="com.example.domain.User" id="userResultMap">
+		<id column="id_" property="id" />
+		<result column="username_" property="username" />
+	</resultMap>
+
+	<!-- 返回一条 -->
+	<select id="findUserById" parameterType="int"
+		resultType="com.example.domain.User">
+		<!-- 基本类型可以用任意字符 -->
+		select * from user where id = #{id}
+	</select>
+
+	<!-- 可能返回多条 -->
+	<!-- '%${value}%'只能用value -->
+	<select id="findUserByName" parameterType="java.lang.String"
+		resultType="com.example.domain.User">
+		select * from user where username like '%${value}%'
+		<!-- 列明和pojo对象属性一至 -->
+		<!-- select id,username,sex from user where username like '%${value}%' -->
+		<!-- select id id_,username username_,sex sex_ from user where username 
+			like '%${value}%' -->
+	</select>
+	<!-- 添加用户 -->
+	<!-- parameterType输入类型为pojo -->
+	<!-- #{}中为实体类的属性值 -->
+	<!-- 自增主键返回 -->
+	<!-- select last_insert_id() -->
+	<!-- order執行順序 -->
+	<!-- <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer"> -->
+	<!-- select last_insert_id() -->
+	<!-- </selectKey> -->
+	<!-- 非自增用uuid通过uuid查询带主键将主键插入到sql语句中相对于insert在之前 -->
+	<!-- <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer"> -->
+	<!-- select last_insert_id() -->
+	<!-- </selectKey> -->
+	<!-- 在insert执行的时候找到id，并返回 -->
+	<!-- 通过orcl序列返回主键值 -->
+	<!-- <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer"> -->
+	<!-- select -->
+	<!-- 序列名.nextval() -->
+	<!-- </selectKey> -->
+
+	<insert id="insertUser" parameterType="com.example.domain.User">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select
+			last_insert_id()
+		</selectKey>
+		insert into user (id,username,birthDay,sex,address) value
+		(#{id},#{username},#{birthDay},#{sex},#{address})
+	</insert>
+
+	<delete id="deleteUserById" parameterType="int">
+		delete from user
+		where
+		id = #{id}
+	</delete>
+	<!-- id必须存在 -->
+	<update id="updateUser" parameterType="com.example.domain.User">
+		update user set username =
+		#{username},birthDay = #{birthDay},sex= #{sex},
+		address = #{address}
+		where id = #{id}
+	</update>
+
+	<!-- 用户信息的综合查询 -->
+	<!-- userCustom.sex取出包装类型的sex -->
+	<select id="findUserList" parameterType="com.example.domain.UserQueryVo"
+		resultType="com.example.domain.UserCustom">
+		<!-- 基本类型可以用任意字符 -->
+		select * from user
+		<where>
+			<include refid="query_user_where"></include>
+			<if test="ids != null">
+				<foreach collection="ids" item="item_id" open="and(" close=")"
+					separator="or">
+					id=#{item_id}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<select id="findUserCount" parameterType="com.example.domain.UserQueryVo"
+		resultType="int">
+		<!-- resultType="int"只有一行且一列 -->
+		<!-- 基本类型可以用任意字符 -->
+		select count(*) from user
+		<where>
+			<include refid="query_user_where"></include>
+			<if test="ids != null">
+				<foreach collection="ids" item="item_id" open="and(" close=")"
+					separator="or">
+					id=#{item_id}
+				</foreach>
+
+				<!-- <foreach collection="ids" item="item_id" open="and id in(" close=")" -->
+				<!-- separator=","> -->
+				<!-- #{item_id} -->
+				<!-- </foreach> -->
+			</if>
+		</where>
+	</select>
+
+	<!-- resultMap在其他文件中加namespace -->
+	<select id="findUserByIdResultMap" parameterType="int"
+		resultMap="userResultMap">
+		select id id_,username username_ from user where id =
+		#{id}
+	</select>
+
+</mapper>

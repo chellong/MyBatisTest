@@ -1,0 +1,8 @@
+ package com.example.domain;
+
+public class OrderDetail {
+
+	/**
+	 * id | orders_id | items_id | items_num |
+	 */
+}

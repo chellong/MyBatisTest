@@ -1,0 +1,11 @@
+package com.example.mapperdao;
+
+/**
+ * 
+ * @author ±±·ÉµÄºòÄñ
+ */
+
+public interface OrdersMapperCustom {
+
+	
+}

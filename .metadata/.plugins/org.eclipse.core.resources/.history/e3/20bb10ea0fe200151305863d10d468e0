@@ -1,0 +1,10 @@
+package com.example.domain;
+
+/**
+ * 订单的扩展类
+ * @author 北飞的候鸟
+ *
+ */
+public class OrderCustom {
+
+}
