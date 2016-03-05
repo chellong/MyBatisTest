@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import com.example.domain.OrderDetial;
 import com.example.domain.Orders;
+import com.example.domain.User;
 import com.example.mapper.OrdersMapperCustom;
 
 public class OrdersCustomTest {
@@ -66,9 +67,34 @@ public class OrdersCustomTest {
 		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
 		try {
 			List<Orders> list = OrdersMapperCustom.findOedersAndOrderDetialResultMap();
-			for(Orders odr : list ){
+			System.out.println(list.get(0).getOrderDetails().size());
+						for(Orders odr : list ){
 				OrderDetial od = odr.getOrderDetails().get(0);
-				System.out.println(od);
+				System.out.println(od.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testFindUserAndItemsResultMap() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		try {
+			List<User> list = OrdersMapperCustom.findUserAndItemsResultMap();
+			for(User user : list){
+				List<Orders> odList = user.getOrders();
+				System.out.println(user);
+				for(Orders od : odList){
+					System.out.println(od);
+					List<OrderDetial> odetList= od.getOrderDetails();
+					for(OrderDetial orderDetial : odetList){
+						System.out.println(orderDetial);
+						System.out.println(orderDetial.getItems());
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

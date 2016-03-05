@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="OrdersCustomTest.testFindOedersAndOrderDetialResultMap" project="MyBatis_3.2.7" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="testFindOedersAndOrderDetialResultMap" classname="com.example.domain.po.OrdersCustomTest" time="0.339"/>
+</testrun>

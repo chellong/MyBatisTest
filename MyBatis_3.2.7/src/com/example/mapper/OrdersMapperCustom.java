@@ -3,6 +3,7 @@ package com.example.mapper;
 import java.util.List;
 
 import com.example.domain.Orders;
+import com.example.domain.User;
 import com.example.domain.po.OrdersCustom;
 
 /**
@@ -32,4 +33,11 @@ public interface OrdersMapperCustom {
 	 * @throws Exception
 	 */
 	public List<Orders> findOedersAndOrderDetialResultMap() throws Exception;
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<User> findUserAndItemsResultMap() throws Exception;
 }

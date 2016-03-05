@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper代理用XML -->
+<mapper namespace="com.example.mapper.OrdersMapperCustom">
+
+	<resultMap type="com.example.domain.Orders" id="OrderUserResultMap">
+		<!-- 订单 -->
+		<id column="id" property="id" />
+		<result column="user_id" property="userid" />
+		<result column="number" property="number" />
+		<result column="createtime" property="createtime" />
+		<result column="note" property="note" />
+		<!-- 用户 -->
+		<association property="user" javaType="com.example.domain.User">
+			<id column="user_id" property="id" />
+			<result column="username" property="username" />
+			<result column="sex" property="sex" />
+			<result column="address" property="address" />
+		</association>
+	</resultMap>
+	<!-- 查询订单及订单明细 -->
+	<resultMap type="com.example.domain.Orders" id="OedersAndOrderDetialResultMap"
+		extends="OrderUserResultMap">
+		<!-- 订单明细 -->
+		<!-- id | orders_id | items_id | items_num | -->
+		<collection property="orderDetails" ofType="com.example.domain.OrderDetial">
+			<id column="orderdetial_id" property="id" />
+			<result column="orders_id" property="ordersid" />
+			<result column="items_id" property="itemsid" />
+			<result column="items_num" property="itemsnum" />
+		</collection>
+	</resultMap>
+	
+	<resultMap type="com.example.domain.User" id="UserAndItemsResultMap">
+			<id column="user_id" property="id" />
+			<result column="username" property="username" />
+			<result column="sex" property="sex" />
+			<result column="address" property="address" />
+<!-- 			订单信息 -->
+		<collection property="orders" ofType="com.example.domain.Orders">
+			<id column="id" property="id" />
+			<result column="user_id" property="userid" />
+			<result column="number" property="number" />
+			<result column="createtime" property="createtime" />
+			<result column="note" property="note" />
+<!-- 			订单明细，一个订单包含多个明细 -->
+			<collection property="orderDetails" ofType="com.example.domain.OrderDetial">
+				<id column="orderdetial_id" property="id" />
+				<result column="orders_id" property="ordersid" />
+				<result column="items_id" property="itemsid" />
+				<result column="items_num" property="itemsnum" />
+<!-- 				商品信息，一个明细包含一个订单 -->
+<!-- 				| items_id | items_num | orders_id | items_id | items_name | items_price | -->
+				<association property="items" javaType="com.example.domain.items">
+					<id column="items_id" property="id" />
+					<result column="username" property="username" />
+					<result column="sex" property="sex" />
+					<result column="address" property="address" />
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="findOedersUser" resultType="com.example.domain.po.OrdersCustom">
+		select
+		orders.*,user.username,user.sex,user.address
+		from orders,user where
+		orders.user_id = user.id;
+	</select>
+
+	<select id="findOedersUserResultMap" resultMap="OedersAndOrderDetialResultMap">
+		select
+		orders.*,user.username,user.sex,user.address
+		from orders,user where
+		orders.user_id = user.id;
+	</select>
+	<!-- 查询订单及订单明细 -->
+	<select id="findOedersAndOrderDetialResultMap" resultMap="OedersAndOrderDetialResultMap">
+		select
+		orders.*,user.username,user.sex,user.address,
+		orderdetial.id
+		orderdetial_id,orderdetial.items_id,
+		orderdetial.items_num,orderdetial.orders_id from orders,
+		user,orderdetial where orders.user_id = user.id and
+		orderdetial.orders_id=orders.id;
+	</select>
+<!-- 	查询用户订单 -->
+	<select id="findUserAndItemsResultMap" resultMap="UserAndItemsResultMap">
+	 select
+		orders.*,user.username,user.sex,user.address,
+		orderdetial.id
+		orderdetial_id,orderdetial.items_id,
+		orderdetial.items_num,orderdetial.orders_id,items.id items_id,items.name items_name,items.price items_price
+ 		from orders,
+		user,orderdetial,items where orders.user_id = user.id and
+		orderdetial.orders_id=orders.id and orderdetial.items_id = items.id;
+	</select>
+</mapper>

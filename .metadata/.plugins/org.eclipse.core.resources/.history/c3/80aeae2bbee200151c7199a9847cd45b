@@ -1,0 +1,11 @@
+package com.example.domain;
+
+public class items {
+	
+//	| id | name  | price | detail | pic   | createtime          |
+
+	private Integer id;
+	private String name;
+	private float price;
+	private String detail;
+}

@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -9,7 +10,8 @@ public class User {
 	private String sex;
 	private Date birthDay;
 	private String address;
-
+	private List<Orders> orders;
+	
 	public int getId() {
 		return id;
 	}
@@ -49,6 +51,14 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	public List<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,7 +67,7 @@ public class User {
 			return true;
 		return false;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", sex=" + sex + ", birthDay=" + birthDay + ", address="

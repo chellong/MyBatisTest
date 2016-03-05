@@ -89,9 +89,7 @@ public class Orders {
 	@Override
 	public String toString() {
 		return "Orders [id=" + id + ", userid=" + userid + ", number=" + number + ", createtime=" + createtime
-				+ ", note=" + note+ " ,username=" + user.getUsername()
-				+ ", sex=" + user.getSex()  + ", address=" + user.getAddress() + "]";
+				+ ", note=" + note+ "]";
 	}
-
 	
 }

@@ -1,0 +1,27 @@
+package com.example.domain;
+
+import java.util.Date;
+
+public class items {
+	
+//	| id | name  | price | detail | pic   | createtime          |
+
+	/**
+	 * id
+	 */
+	private Integer id;
+	/**
+	 * 商品名
+	 */
+	private String name;
+	/**
+	 * 价格
+	 */
+	private float price;
+	/**
+	 * 简介
+	 */
+	private String detail;
+	private String pic;
+	private Date createtime;
+}

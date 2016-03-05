@@ -1,0 +1,7 @@
+package com.example.domain;
+
+public class items {
+	
+//	| id | name  | price | detail | pic   | createtime          |
+
+}
