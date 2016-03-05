@@ -24,3 +24,6 @@
 1457099857312	Rename type 'OrderCustom'
 1457104088212	Rename type 'OrderDetail'
 1457175425956	Rename type 'items'
+1457179730727	Rename package 'com.example.mapperdao'
+1457179751032	Copy compilation unit
+1457182154322	Rename type 'UserMapperTest'

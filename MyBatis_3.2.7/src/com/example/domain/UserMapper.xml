@@ -5,7 +5,11 @@
 
 <!-- mapper代理用XML -->
 <mapper namespace="com.example.mapper.UserMapper">
-
+	<!-- 加入ehcache 的缓存 -->
+	<!-- <cache type="" /> -->
+	<cache />
+	<!-- userCache 是否使用二级缓存 -->
+	<!-- flushCache 是否刷新缓存 -->
 	<sql id="query_user_where">
 		<if test="userCustom != null">
 			<if test="userCustom.sex != null and userCustom.sex != ''">

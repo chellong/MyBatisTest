@@ -1,0 +1,115 @@
+package com.example.domain.po;
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.example.domain.OrderDetial;
+import com.example.domain.Orders;
+import com.example.domain.User;
+import com.example.mapper.OrdersMapperCustom;
+
+public class OrdersCustomTest {
+
+	private static SqlSessionFactory sqlSessionFactory;
+
+	@BeforeClass
+	public static void afterMethod() throws IOException {
+		// 配置文件
+		String resource = "SqlMapConfig.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		// 创建会话工厂传入配置文件信息
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	}
+	
+	@Test
+	public void testFindOedersUser() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		try {
+			List<OrdersCustom> list = OrdersMapperCustom.findOedersUser();
+			for(OrdersCustom oc : list ){
+				System.out.println(oc.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testFindOedersUserResultMap() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		try {
+			List<Orders> list = OrdersMapperCustom.findOedersUserResultMap();
+			for(Orders odr : list ){
+				System.out.println(odr.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testFindOedersAndOrderDetialResultMap() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		try {
+			List<Orders> list = OrdersMapperCustom.findOedersAndOrderDetialResultMap();
+			System.out.println(list.get(0).getOrderDetails().size());
+						for(Orders odr : list ){
+				OrderDetial od = odr.getOrderDetails().get(0);
+				System.out.println(od.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testFindUserAndItemsResultMap() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		try {
+			List<User> list = OrdersMapperCustom.findUserAndItemsResultMap();
+			for(User user : list){
+				List<Orders> odList = user.getOrders();
+				System.out.println(user);
+				for(Orders od : odList){
+					System.out.println(od);
+					List<OrderDetial> odetList= od.getOrderDetails();
+					for(OrderDetial orderDetial : odetList){
+						System.out.println(orderDetial);
+						System.out.println(orderDetial.getItems());
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testFindOrdersUserLazyLoading() {
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		OrdersMapperCustom OrdersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		try {
+			List<User> list = OrdersMapperCustom.findUserAndItemsResultMap();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

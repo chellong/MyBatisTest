@@ -1,0 +1,34 @@
+package com.example.testcache;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.example.domain.User;
+import com.example.domain.UserCustom;
+import com.example.domain.UserQueryVo;
+import com.example.mapper.UserMapper;
+
+public class UserMapperTest {
+
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void afterClass() throws IOException {
+		// 配置文件
+		String resource = "SqlMapConfig.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		// 创建会话工厂传入配置文件信息
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	}
+
+}
