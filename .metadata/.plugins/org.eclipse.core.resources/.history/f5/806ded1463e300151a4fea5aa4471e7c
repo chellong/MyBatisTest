@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<!-- <setting name="useGeneratedKeys" value="true" /> -->
+		<!-- <setting name="defaultExecutorType" value="REUSE" /> -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+	<typeAliases>
+		<!-- <typeAlias alias="User" type="com.example.domain.User" /> -->
+		<!-- <package name="com.example.domain" /> -->
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/example/ssm/po/User.xml" />
+<!-- 		/Spring3.2.0_MyBatis_3.2.7/src/com/example/ssm/mapper/UserMapper.xml -->
+		<mapper resource="com/example/ssm/mapper/UserMapper.xml" />
+	</mappers>
+</configuration> 

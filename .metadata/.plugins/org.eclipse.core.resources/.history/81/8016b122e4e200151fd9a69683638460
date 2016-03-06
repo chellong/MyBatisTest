@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 全局配置参数 -->
+	<settings>
+		<!-- changes from the defaults for testing -->
+		<setting name="cacheEnabled" value="true" />
+		<!-- <setting name="useGeneratedKeys" value="true" /> -->
+		<!-- <setting name="defaultExecutorType" value="REUSE" /> -->
+		<!-- 延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 是否积极的加载 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+
+	<!-- 别名 -->
+	<typeAliases>
+		<!-- 单个别名 -->
+		<!-- <typeAlias alias="User" type="com.example.domain.User" /> -->
+		<!-- 批量 指定包名，别名就是类名 首字母可以是大小写 -->
+<!-- 		<package name="com.example.domain" /> -->
+	</typeAliases>
+	<!-- 类型处理不常用 -->
+	<mappers>
+		<mapper resource="com/example/ssm/po/User.xml" />
+	</mappers>
+</configuration> 

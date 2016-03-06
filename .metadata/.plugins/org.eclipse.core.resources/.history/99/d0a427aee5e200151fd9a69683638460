@@ -1,0 +1,44 @@
+package com.example.ssm.dao;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class UserDaoImplTest {
+
+	private ApplicationContext applicationContext;
+	@Before
+	public void testBefore(){
+		applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+	}
+	
+	@Test
+	public void testFindUserById() {
+		UserDao userDao = (UserDao) applicationContext.getBean("userDao");
+		try {
+			userDao.findUserById(1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testInsertUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDeleteUserById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateUser() {
+		fail("Not yet implemented");
+	}
+
+}

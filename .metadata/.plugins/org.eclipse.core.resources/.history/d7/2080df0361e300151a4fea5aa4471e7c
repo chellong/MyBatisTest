@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 普通方法用XML -->
+<mapper namespace="test">
+
+	<!-- 返回一条 -->
+	<select id="findUserById" parameterType="int"
+		resultType="com.example.ssm.po.User">
+		<!-- 基本类型可以用任意字符 -->
+		select * from user where id = #{id}
+	</select>
+	<!-- 可能返回多条 -->
+	<!-- '%${value}%'只能用value -->
+	<select id="findUserByName" parameterType="java.lang.String"
+		resultType="com.example.ssm.po.User">
+		select * from user where username like '%${value}%'
+	</select>
+	<insert id="insertUser" parameterType="com.example.ssm.po.User">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select
+			last_insert_id()
+		</selectKey>
+		insert into user (id,username,birthDay,sex,address) value
+		(#{id},#{username},#{birthDay},#{sex},#{address})
+	</insert>
+
+	<delete id="deleteUserById" parameterType="int">
+		delete from user where
+		id = #{id}
+	</delete>
+	<!-- id必须存在 -->
+	<update id="updateUser" parameterType="com.example.ssm.po.User">
+		update user set username =
+		#{username},birthDay = #{birthDay},sex= #{sex},
+		address = #{address}
+		where id = #{id}
+	</update>
+</mapper>
